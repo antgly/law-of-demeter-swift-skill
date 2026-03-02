@@ -83,7 +83,7 @@ A long chain is a **signal**. In strict mode, review it, then classify it:
 
 ### 3) Concurrency does not exempt LoD
 
-Swift 6 async/await and actor code is still subject to LoD.
+Swift async/await and actor code is still subject to LoD.
 If `await` is followed by traversal through returned internals, treat it as a likely design smell.
 
 ---
@@ -275,7 +275,7 @@ let postalCode = company.postalCode(for: employeeID)
 
 ---
 
-## Swift 6 Concurrency Example (Strict)
+## Swift Concurrency Example (Strict)
 
 ### ❌ High severity: async traversal chain
 
@@ -416,7 +416,7 @@ If found, propose a small follow-up refactor to centralize the new owner-level A
 
 **Strict mode favors maintainability over convenience.**
 
-In Swift 6 code, especially with actors and async services, prefer APIs that:
+In Swift code, especially with actors and async services, prefer APIs that:
 
 - express **intent**
 - hide **structure**
