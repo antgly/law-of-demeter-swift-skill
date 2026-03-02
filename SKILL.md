@@ -382,7 +382,7 @@ When reviewing code, use this response pattern for each likely violation:
 ## Quick Decision Rules (Strict)
 
 ### Flag immediately if
-- 3+ domain hops (`a.b.c` in business logic)
+- 3+ domain hops (`a.b.c.d` in business logic)
 - async/await + traversal (`await x().y.z`)
 - public API returns structure only to force traversal by callers
 - repeated chain smells in multiple files
