@@ -293,7 +293,7 @@ Why this is high severity:
 - Caller learns internal account/owner/settings layout
 - Refactors spread across many call sites
 
-### ✅ Prefer: intent-focused async API
+### ✅ Prefer: intent-focused actor/service API
 
 ```swift
 let marketingEmailsEnabled = try await accountService.marketingEmailsEnabled()
