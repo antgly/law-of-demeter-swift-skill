@@ -1,5 +1,5 @@
 ---
-name: law-of-demeter-swift-6-2-strict
+name: law-of-demeter-swift
 description: Use when reviewing, generating, or refactoring Swift 6 code to aggressively detect Law of Demeter violations (deep reach-through chains, leaked structure, async traversal chains) and propose Swift-idiomatic owner-level APIs.
 ---
 
