@@ -128,9 +128,13 @@ If the same chain or a similar chain appears in multiple locations, escalate sev
 
 Use these levels when reporting:
 
+**Domain hop definition:** Count domain hops as the number of transitions (dots) between domain segments.  
+For example, `order.customer.address.city` has 3 domain hops (`order → customer → address → city`).  
+Treat 2+ domain hops as a likely LoD violation; the severity depends on context as described below.
+
 ### High severity
 - Async/actor traversal chain after `await`
-- 3+ domain hops in app/business logic
+- 2+ domain hops in app/business logic
 - Public API exposing nested structure
 - Repeated chain smell in multiple call sites
 
