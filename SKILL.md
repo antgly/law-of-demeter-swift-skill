@@ -128,26 +128,6 @@ class OrderProcessor {
 
 ## Swift-Specific Considerations
 
-### Properties Over Getters
-
-Swift uses properties, not getter methods. Follow Swift API Design Guidelines:
-
-```swift
-// ❌ AVOID: Java/TypeScript-style getters
-class User {
-    func getProfile() -> Profile { ... }
-    func getAddress() -> Address { ... }
-    func getZipCode() -> String { ... }
-}
-
-// ✅ CORRECT: Swift properties
-class User {
-    var profile: Profile { ... }
-    var address: Address { ... }
-    var zipCode: String { ... }
-}
-```
-
 ### Access Control
 
 Use Swift's access control to enforce encapsulation:
@@ -371,45 +351,7 @@ struct OrderView {
 }
 ```
 
-### Example 3: View Configuration (UIKit)
-
-```swift
-// ❌ VIOLATION
-class ProfileViewController: UIViewController {
-    func configure(with user: User) {
-        nameLabel.text = user.profile.displayName
-        emailLabel.text = user.profile.contact.email
-        phoneLabel.text = user.profile.contact.phone
-    }
-}
-
-// ✅ CORRECT
-struct User {
-    private let profile: Profile
-
-    var displayName: String {
-        profile.displayName
-    }
-
-    var email: String {
-        profile.email
-    }
-
-    var phone: String {
-        profile.phone
-    }
-}
-
-class ProfileViewController: UIViewController {
-    func configure(with user: User) {
-        nameLabel.text = user.displayName
-        emailLabel.text = user.email
-        phoneLabel.text = user.phone
-    }
-}
-```
-
-### Example 4: SwiftUI Navigation
+### Example 3: SwiftUI Navigation
 
 ```swift
 // ❌ VIOLATION
@@ -456,7 +398,7 @@ struct ContentView: View {
 }
 ```
 
-### Example 5: SwiftUI State Management
+### Example 4: SwiftUI State Management
 
 ```swift
 // ❌ VIOLATION
