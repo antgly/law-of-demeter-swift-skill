@@ -360,9 +360,9 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            Text(app.currentUser.profile.displayName)
-                .navigationTitle(app.settings.theme.name)
-                .foregroundColor(Color(app.settings.theme.colors.primary))
+            Text(appModel.currentUser.profile.displayName)
+                .navigationTitle(appModel.settings.theme.name)
+                .foregroundColor(Color(appModel.settings.theme.colors.primary))
         }
     }
 }
