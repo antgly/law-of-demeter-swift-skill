@@ -414,7 +414,7 @@ class ProfileViewController: UIViewController {
 ```swift
 // ❌ VIOLATION
 struct ContentView: View {
-    let app: App
+    let appModel: AppModel
 
     var body: some View {
         NavigationStack {
@@ -426,7 +426,7 @@ struct ContentView: View {
 }
 
 // ✅ CORRECT
-struct App {
+struct AppModel {
     private let currentUser: User
     private let settings: Settings
 
@@ -444,7 +444,7 @@ struct App {
 }
 
 struct ContentView: View {
-    let app: App
+    let appModel: AppModel
 
     var body: some View {
         NavigationStack {
@@ -471,7 +471,7 @@ class ViewModel {
 }
 
 struct OrderView: View {
-    @State private var viewModel: ViewModel
+    @State private var viewModel = ViewModel(orderManager: OrderManager())
 
     var body: some View {
         Text(viewModel.displayText)
@@ -506,7 +506,7 @@ struct OrderManager {
 }
 
 struct OrderView: View {
-    @State private var viewModel: ViewModel
+    @State private var viewModel = ViewModel(orderManager: OrderManager())
 
     var body: some View {
         Text(viewModel.currentOrderAddress)
