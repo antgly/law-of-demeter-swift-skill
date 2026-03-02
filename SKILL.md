@@ -94,7 +94,7 @@ let city = company.employeeCity(id: employeeId)
 | **Fragile code** | Structure changes break all callers |
 | **Hidden dependencies** | Not obvious what's needed |
 | **Hard to test** | Must mock entire chain |
-| **Null danger** | Each `.` is a potential nil |
+| **Null danger** | Each step in an optional chain (`?.`) or forced unwrap (`!`) can fail if intermediate data is missing |
 
 ## Allowed Method Calls
 
