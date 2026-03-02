@@ -294,7 +294,7 @@ let zip = user.zipCode
 
 ## Real-World Swift Examples
 
-### Example 1: Navigation
+### Example 1: Navigation (UIKit)
 
 ```swift
 // ❌ VIOLATION
@@ -371,7 +371,7 @@ struct OrderView {
 }
 ```
 
-### Example 3: View Configuration
+### Example 3: View Configuration (UIKit)
 
 ```swift
 // ❌ VIOLATION
@@ -405,6 +405,160 @@ class ProfileViewController: UIViewController {
         nameLabel.text = user.displayName
         emailLabel.text = user.email
         phoneLabel.text = user.phone
+    }
+}
+```
+
+### Example 4: SwiftUI Navigation
+
+```swift
+// ❌ VIOLATION
+struct ContentView: View {
+    let app: App
+
+    var body: some View {
+        NavigationStack {
+            Text(app.currentUser.profile.displayName)
+                .navigationTitle(app.settings.theme.name)
+                .foregroundColor(Color(app.settings.theme.colors.primary))
+        }
+    }
+}
+
+// ✅ CORRECT
+struct App {
+    private let currentUser: User
+    private let settings: Settings
+
+    var userDisplayName: String {
+        currentUser.displayName
+    }
+
+    var navigationTitle: String {
+        settings.themeName
+    }
+
+    var primaryColor: Color {
+        settings.primaryColor
+    }
+}
+
+struct ContentView: View {
+    let app: App
+
+    var body: some View {
+        NavigationStack {
+            Text(app.userDisplayName)
+                .navigationTitle(app.navigationTitle)
+                .foregroundColor(app.primaryColor)
+        }
+    }
+}
+```
+
+### Example 5: SwiftUI State Management
+
+```swift
+// ❌ VIOLATION
+@Observable
+class ViewModel {
+    let orderManager: OrderManager
+
+    var displayText: String {
+        guard let order = orderManager.orders.first else { return "" }
+        return order.customer.address.formattedAddress
+    }
+}
+
+struct OrderView: View {
+    @State private var viewModel: ViewModel
+
+    var body: some View {
+        Text(viewModel.displayText)
+    }
+}
+
+// ✅ CORRECT
+struct Order {
+    let id: String
+    private let customer: Customer
+
+    var shippingAddress: String {
+        customer.formattedShippingAddress
+    }
+}
+
+@Observable
+class ViewModel {
+    private let orderManager: OrderManager
+
+    var currentOrderAddress: String {
+        orderManager.currentOrderAddress
+    }
+}
+
+struct OrderManager {
+    var orders: [Order]
+
+    var currentOrderAddress: String {
+        orders.first?.shippingAddress ?? ""
+    }
+}
+
+struct OrderView: View {
+    @State private var viewModel: ViewModel
+
+    var body: some View {
+        Text(viewModel.currentOrderAddress)
+    }
+}
+```
+
+### Example 6: SwiftUI Environment and Preferences
+
+```swift
+// ❌ VIOLATION
+struct SettingsView: View {
+    @Environment(\.colorScheme) var colorScheme
+    let appState: AppState
+
+    var body: some View {
+        VStack {
+            Text("Theme: \(appState.userPreferences.theme.displayName)")
+            Text("Font Size: \(appState.userPreferences.accessibility.fontSize)")
+            Toggle("Dark Mode",
+                   isOn: .constant(appState.userPreferences.theme.isDark))
+        }
+    }
+}
+
+// ✅ CORRECT
+struct AppState {
+    private let userPreferences: UserPreferences
+
+    var themeName: String {
+        userPreferences.themeName
+    }
+
+    var fontSize: Double {
+        userPreferences.fontSize
+    }
+
+    var isDarkMode: Bool {
+        userPreferences.isDarkMode
+    }
+}
+
+struct SettingsView: View {
+    @Environment(\.colorScheme) var colorScheme
+    let appState: AppState
+
+    var body: some View {
+        VStack {
+            Text("Theme: \(appState.themeName)")
+            Text("Font Size: \(appState.fontSize)")
+            Toggle("Dark Mode", isOn: .constant(appState.isDarkMode))
+        }
     }
 }
 ```
