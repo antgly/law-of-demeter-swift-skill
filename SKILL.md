@@ -83,7 +83,7 @@ A long chain is a **signal**. In strict mode, review it, then classify it:
 
 ### 3) Concurrency does not exempt LoD
 
-Swift 6.2 async/await and actor code is still subject to LoD.
+Swift 6 async/await and actor code is still subject to LoD.
 If `await` is followed by traversal through returned internals, treat it as a likely design smell.
 
 ---
