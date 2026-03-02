@@ -413,7 +413,7 @@ class ViewModel {
 }
 
 struct OrderView: View {
-    @State private var viewModel = ViewModel(orderManager: OrderManager())
+    @State private var viewModel = ViewModel(orderManager: OrderManager(orders: []))
 
     var body: some View {
         Text(viewModel.displayText)
@@ -448,7 +448,7 @@ struct OrderManager {
 }
 
 struct OrderView: View {
-    @State private var viewModel = ViewModel(orderManager: OrderManager())
+    @State private var viewModel = ViewModel(orderManager: OrderManager(orders: []))
 
     var body: some View {
         Text(viewModel.currentOrderAddress)
