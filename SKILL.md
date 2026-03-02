@@ -595,20 +595,20 @@ When you need data from nested objects: add a property on the owner that returns
 
 ### Strict Concurrency
 
-With Swift 6's strict concurrency checking, chains become even more problematic:
+With Swift 6's strict concurrency checking, chains interact with actor isolation and `Sendable` in subtle ways:
 
 ```swift
-// ❌ VIOLATION: Potential data races with chains
+// ❌ VIOLATION: Leaks deep object graph details and couples to internals
 actor OrderManager {
     var orders: [Order]
 
     func getCustomerEmail(orderId: String) async -> String? {
         orders.first(where: { $0.id == orderId })?.customer.email
-        // Multiple async hops through object graph
+        // Harder to keep a narrow actor boundary; easy to start exposing non-Sendable internals
     }
 }
 
-// ✅ CORRECT: Single responsibility
+// ✅ CORRECT: Keeps a narrow, well-defined actor boundary
 actor OrderManager {
     var orders: [Order]
 
