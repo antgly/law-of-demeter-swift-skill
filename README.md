@@ -72,7 +72,7 @@ When you flag a violation, propose the smallest safe refactor:
 1. Add a forwarding property (cheap, stable data)
 2. Add an owner-level method (query/action/async/throws)
 3. Move behavior to owner
-4. Add a façade/protocol where helpful
+4. Add a facade/protocol where helpful
 5. Collapse async traversal behind an actor/service API
 
 ### Minimal change path
