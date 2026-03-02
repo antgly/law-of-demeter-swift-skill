@@ -456,7 +456,7 @@ struct OrderView: View {
 }
 ```
 
-### Example 6: SwiftUI Environment and Preferences
+### Example 5: SwiftUI Environment and Preferences
 
 ```swift
 // ❌ VIOLATION
