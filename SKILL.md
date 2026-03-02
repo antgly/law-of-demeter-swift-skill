@@ -32,7 +32,7 @@ NEVER chain through objects. Ask, don't reach.
 
 ## Detection: The Chain Smell
 
-If you see multiple dots, you're violating LoD:
+If you see a chain of property accesses that traverses nested domain/model ownership (for example, `user.profile.address.city`), you are probably violating LoD; fluent APIs and framework modifier chains (like SwiftUI) are usually fine:
 
 ```swift
 // ❌ VIOLATION: Reaching through objects
