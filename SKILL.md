@@ -580,6 +580,7 @@ struct ViewState {
     let settings: Settings
 }
 
+let viewState = ViewState(user: user, settings: settings)
 let theme = viewState.user.preferences.theme
 let fontSize = viewState.settings.display.fontSize
 
