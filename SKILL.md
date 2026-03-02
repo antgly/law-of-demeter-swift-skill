@@ -1,13 +1,13 @@
 ---
 name: law-of-demeter-swift
-description: Use when reviewing, generating, or refactoring Swift 6 code to aggressively detect Law of Demeter violations (deep reach-through chains, leaked structure, async traversal chains) and propose Swift-idiomatic owner-level APIs.
+description: Use when reviewing, generating, or refactoring Swift code to aggressively detect Law of Demeter violations (deep reach-through chains, leaked structure, async traversal chains) and propose Swift-idiomatic owner-level APIs.
 ---
 
-# Law of Demeter for Swift 6 (Strict Review Mode)
+# Law of Demeter for Swift (Strict Review Mode)
 
 ## Purpose
 
-Enforce **Law of Demeter (LoD)** in Swift 6 code with a **strict-by-default** review posture:
+Enforce **Law of Demeter (LoD)** in Swift code with a **strict-by-default** review posture:
 
 - Flag deep structural access (`a.b.c`, `a?.b?.c`)
 - Flag chained domain lookups across model/service boundaries
